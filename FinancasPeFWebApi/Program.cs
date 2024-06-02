@@ -17,8 +17,12 @@ builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("Default")!;
 builder.Services.AddTransient(_ => new DapperContext(connectionString));
+
 builder.Services.AddTransient<IPublicacaoRepository, PublicacaoRepository>();
 builder.Services.AddTransient<IPublicacaoService, PublicacaoService>();
+
+builder.Services.AddTransient<IForumRepository, ForumRepository>();
+builder.Services.AddTransient<IForumService, ForumService>();
 
 var app = builder.Build();
 
