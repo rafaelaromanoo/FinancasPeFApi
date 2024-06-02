@@ -9,10 +9,30 @@ namespace FinancasPeFWebApi.Controllers
     {
         private readonly IPublicacaoService _service = service;
 
-        [HttpGet("Teste")]
-        public async Task<ActionResult> Teste()
+        [HttpGet("ListarPublicacoes")]
+        public async Task<ActionResult> ListarPublicacoes()
         {
-            return Ok(await _service.Teste());
+            try
+            {
+                return Ok(await _service.ListarPublicacoes());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("CurtirPublicacao")]
+        public async Task<ActionResult> CurtirPublicacao(int idPublicacao)
+        {
+            try
+            {
+                return Ok(await _service.CurtirPublicacao(idPublicacao));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Service
     {
         private readonly IPublicacaoRepository _repo = repo;
 
-        public async Task<IEnumerable<PublicacaoDto>> Teste()
+        public async Task<IEnumerable<PublicacaoDto>> ListarPublicacoes()
         {
-            var publicacoes = await _repo.Teste();
+            var publicacoes = await _repo.ListarPublicacoes();
             var publicacoesDto = new List<PublicacaoDto>();
 
             foreach (var publicacao in publicacoes)
@@ -20,6 +20,13 @@ namespace Service
             }
 
             return publicacoesDto;
+        }
+
+        public async Task<PublicacaoDto> CurtirPublicacao(int idPublicacao)
+        {
+            var publicacaoCurtida = await _repo.CurtirPublicacao(idPublicacao);
+
+            return new PublicacaoDto(publicacaoCurtida);
         }
     }
 }

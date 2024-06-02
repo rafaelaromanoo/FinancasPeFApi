@@ -9,6 +9,7 @@ namespace Model.Interface
 {
     public interface IPublicacaoService
     {
-        Task<IEnumerable<PublicacaoDto>> Teste();
+        Task<IEnumerable<PublicacaoDto>> ListarPublicacoes();
+        Task<PublicacaoDto> CurtirPublicacao(int idPublicacao);
     }
 }
