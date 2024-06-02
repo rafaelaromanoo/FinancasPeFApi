@@ -1,6 +1,6 @@
 @FinancasPeFWebApi_HostAddress = http://localhost:5081
 
-GET {{FinancasPeFWebApi_HostAddress}}/api/teste
+GET {{FinancasPeFWebApi_HostAddress}}/api/Publicacao/Teste
 Accept: application/json
 
 ###
