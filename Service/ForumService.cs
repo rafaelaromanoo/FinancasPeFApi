@@ -1,4 +1,5 @@
-﻿using Model.Dto;
+﻿using Model;
+using Model.Dto;
 using Model.Interface;
 
 namespace Service
@@ -19,6 +20,26 @@ namespace Service
             }
 
             return forunsDto;
+        }
+
+        public async Task<bool> AdicionarForum(string usuarioCadastro, string tituloForum, string conteudoForum)
+        {
+            var foruns = await _repo.ListarForuns();
+
+            var maxIdForum = foruns.Any() ? foruns.Max(x => x.IdForum) : 0;
+
+            var novoForum = new Forum()
+            {
+                IdForum = maxIdForum + 1,
+                UsuarioCadastro = usuarioCadastro,
+                DataCadastro = DateTime.Now,
+                IdTag = 1,
+                TituloForum = tituloForum,
+                ConteudoForum = conteudoForum,
+                CurtidasForum = 0
+            };
+
+            return await _repo.Inserir(novoForum);
         }
     }
 }

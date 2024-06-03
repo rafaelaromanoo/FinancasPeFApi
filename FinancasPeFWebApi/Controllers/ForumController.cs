@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Model;
 using Model.Interface;
 
 namespace FinancasPeFWebApi.Controllers
@@ -15,6 +16,19 @@ namespace FinancasPeFWebApi.Controllers
             try
             {
                 return Ok(await _service.ListarForuns());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AdicionarForum")]
+        public async Task<ActionResult> AdicionarForum(string usuarioCadastro, string tituloPublicacao, string conteudoPublicacao)
+        {
+            try
+            {
+                return Ok(await _service.AdicionarForum(usuarioCadastro, tituloPublicacao, conteudoPublicacao));
             }
             catch (Exception ex)
             {

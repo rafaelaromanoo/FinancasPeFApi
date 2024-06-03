@@ -10,5 +10,6 @@ namespace Model.Interface
     public interface IForumService
     {
         Task<IEnumerable<ForumDto>> ListarForuns();
+        Task<bool> AdicionarForum(string usuarioCadastro, string tituloForum, string conteudoForum);
     }
 }

@@ -16,5 +16,38 @@ namespace Infra.Repository
             return foruns;
         }
 
+        public async Task<bool> Inserir(Forum forum)
+        {
+            await _connection.OpenAsync();
+            var inserido = await _connection.ExecuteAsync(
+                @"INSERT INTO Forum (IdForum, 
+                                        UsuarioCadastro, 
+                                        DataCadastro, 
+                                        IdTag, 
+                                        TituloForum, 
+                                        ConteudoForum, 
+                                        CurtidasForum)
+                    VALUES (@IdForum, 
+                            @UsuarioCadastro, 
+                            @DataCadastro, 
+                            @IdTag, 
+                            @TituloForum, 
+                            @ConteudoForum, 
+                            @CurtidasForum)",
+                new
+                {
+                    forum.IdForum,
+                    forum.UsuarioCadastro,
+                    forum.DataCadastro,
+                    forum.IdTag,
+                    forum.TituloForum,
+                    forum.ConteudoForum,
+                    forum.CurtidasForum
+                });
+            await _connection.CloseAsync();
+
+            return inserido > 0;
+        }
+
     }
 }
