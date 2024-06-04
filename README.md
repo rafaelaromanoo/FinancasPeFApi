@@ -1,11 +1,11 @@
 # Para iniciar o backend
 - É preciso fazer clone no Visual Studio 17.20.
-(FinancasPeFApi)[https://github.com/rafaelaromanoo/FinancasPeFApi]
+[FinancasPeFApi](https://github.com/rafaelaromanoo/FinancasPeFApi)
 - É preciso instalar o pacote .NET 8
 
 # Para iniciar o frontend:
 - É preciso fazer clone do outro projeto que também está no meu repositório
-(FinancasPaisEFilhosFront)[https://github.com/rafaelaromanoo/FinancasPaisEFilhosFront]
+[FinancasPaisEFilhosFront](https://github.com/rafaelaromanoo/FinancasPaisEFilhosFront)
 
 - Tive que instalar o node.
 - Após concluir a instalação abri o projeto no VisualStudio e com o atalho control + ' (aspas simples) abri o terminal.
