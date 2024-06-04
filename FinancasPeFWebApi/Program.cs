@@ -8,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowOrigin",
-        builder => builder.WithOrigins("http://127.0.0.1:5500")); // Substitua pelo seu domínio frontend
+        builder => builder
+            .WithOrigins("http://127.0.0.1:5500") 
+            .AllowAnyHeader() 
+            .AllowAnyMethod() 
+            .AllowCredentials()); 
 });
 
 builder.Services.AddControllers();

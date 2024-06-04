@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Model;
+using Model.Dto;
 using Model.Interface;
 
 namespace FinancasPeFWebApi.Controllers
@@ -24,11 +24,11 @@ namespace FinancasPeFWebApi.Controllers
         }
 
         [HttpPost("AdicionarForum")]
-        public async Task<ActionResult> AdicionarForum(string usuarioCadastro, string tituloPublicacao, string conteudoPublicacao)
+        public async Task<ActionResult> AdicionarForum(AdicionarForumDto adicionarForumDto)
         {
             try
             {
-                return Ok(await _service.AdicionarForum(usuarioCadastro, tituloPublicacao, conteudoPublicacao));
+                return Ok(await _service.AdicionarForum(adicionarForumDto));
             }
             catch (Exception ex)
             {

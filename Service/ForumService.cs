@@ -22,7 +22,7 @@ namespace Service
             return forunsDto;
         }
 
-        public async Task<bool> AdicionarForum(string usuarioCadastro, string tituloForum, string conteudoForum)
+        public async Task<bool> AdicionarForum(AdicionarForumDto adicionarForumDto)
         {
             var foruns = await _repo.ListarForuns();
 
@@ -31,11 +31,11 @@ namespace Service
             var novoForum = new Forum()
             {
                 IdForum = maxIdForum + 1,
-                UsuarioCadastro = usuarioCadastro,
+                UsuarioCadastro = adicionarForumDto.UsuarioCadastroForum,
                 DataCadastro = DateTime.Now,
                 IdTag = 1,
-                TituloForum = tituloForum,
-                ConteudoForum = conteudoForum,
+                TituloForum = adicionarForumDto.TituloForum,
+                ConteudoForum = adicionarForumDto.ConteudoForum,
                 CurtidasForum = 0
             };
 

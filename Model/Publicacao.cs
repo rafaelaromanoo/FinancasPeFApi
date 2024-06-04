@@ -7,7 +7,7 @@
         public required DateTime DataCadastro { get; set; }
         public required int IdTag { get; set; }
         public required string TituloPublicacao { get; set; }
-        public string ConteudoPublicacao { get; set; } = string.Empty;
+        public required string ConteudoPublicacao { get; set; }
         public int CurtidasPublicacao { get; set; }
     }
 }
