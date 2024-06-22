@@ -93,6 +93,7 @@ CREATE TABLE Forum (
     TituloForum varchar(80) NOT NULL,
     ConteudoForum varchar(MAX),
     CurtidasForum int,
+    QuantidadeRespostas int DEFAULT 0,
     CONSTRAINT FK_Forum_Tag FOREIGN KEY (IdTag) REFERENCES Tag(IdTag)
 );
 
@@ -113,5 +114,18 @@ CREATE TABLE UsuarioNewslatter (
 );
 
 INSERT INTO Tag (IdTag,Descricao)
-VALUES (1, 'Descricao teste')
+VALUES (1, 'Descricao teste');
+
+CREATE TRIGGER trg_AtualizaQuantidadeRespostas
+ON RespostaForum
+AFTER INSERT
+AS
+BEGIN
+    -- Atualiza a quantidade de respostas no Forum correspondente
+    UPDATE Forum
+    SET QuantidadeRespostas = QuantidadeRespostas + 1
+    FROM Forum
+    INNER JOIN inserted i ON Forum.IdForum = i.IdForum;
+END;
+
 ```
