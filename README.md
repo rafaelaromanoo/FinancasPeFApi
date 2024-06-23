@@ -118,14 +118,27 @@ VALUES (1, 'Descricao teste');
 
 CREATE TRIGGER trg_AtualizaQuantidadeRespostas
 ON RespostaForum
-AFTER INSERT
+AFTER INSERT, DELETE
 AS
 BEGIN
     -- Atualiza a quantidade de respostas no Forum correspondente
-    UPDATE Forum
-    SET QuantidadeRespostas = QuantidadeRespostas + 1
-    FROM Forum
-    INNER JOIN inserted i ON Forum.IdForum = i.IdForum;
+    -- Para inserções
+    IF EXISTS (SELECT * FROM inserted)
+    BEGIN
+        UPDATE Forum
+        SET QuantidadeRespostas = QuantidadeRespostas + 1
+        FROM Forum
+        INNER JOIN inserted i ON Forum.IdForum = i.IdForum;
+    END
+
+    -- Para deleções
+    IF EXISTS (SELECT * FROM deleted)
+    BEGIN
+        UPDATE Forum
+        SET QuantidadeRespostas = QuantidadeRespostas - 1
+        FROM Forum
+        INNER JOIN deleted d ON Forum.IdForum = d.IdForum;
+    END
 END;
 
 ```
