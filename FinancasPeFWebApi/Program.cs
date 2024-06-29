@@ -5,32 +5,35 @@ using Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowOrigin",
-        builder => builder
-            .WithOrigins("http://127.0.0.1:5500") 
-            .AllowAnyHeader() 
-            .AllowAnyMethod() 
-            .AllowCredentials()); 
+    options.AddPolicy("AllowAll", builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
 });
 
-builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("Default")!;
 builder.Services.AddTransient(_ => new DapperContext(connectionString));
 
-builder.Services.AddTransient<IPublicacaoRepository, PublicacaoRepository>();
 builder.Services.AddTransient<IPublicacaoService, PublicacaoService>();
+builder.Services.AddTransient<IPublicacaoRepository, PublicacaoRepository>();
 
-builder.Services.AddTransient<IForumRepository, ForumRepository>();
 builder.Services.AddTransient<IForumService, ForumService>();
+builder.Services.AddTransient<IForumRepository, ForumRepository>();
+
+builder.Services.AddTransient<IRespostaForumService, RespostaForumService>();
+builder.Services.AddTransient<IRespostaForumRepository, RespostaForumRepository>();
 
 var app = builder.Build();
 
-app.UseCors("AllowOrigin");
+app.UseCors("AllowAll");
 
 app.UseSwagger();
 app.UseSwaggerUI();

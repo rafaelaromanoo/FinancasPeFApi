@@ -9,5 +9,6 @@
         public required string TituloForum { get; set; }
         public required string ConteudoForum { get; set; }
         public int CurtidasForum { get; set; }
+        public int QuantidadeRespostas { get; set; }
     }
 }

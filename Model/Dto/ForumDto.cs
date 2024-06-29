@@ -9,5 +9,6 @@
         public string TituloForum { get; set; } = forum.TituloForum;
         public string ConteudoForum { get; set; } = forum.ConteudoForum;
         public int CurtidasForum { get; set; } = forum.CurtidasForum;
+        public int QuantidadeRespostas { get; set; } = forum.QuantidadeRespostas;
     }
 }

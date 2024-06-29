@@ -41,5 +41,12 @@ namespace Service
 
             return await _repo.Inserir(novoForum);
         }
+
+        public async Task<ForumDto> CurtirForum(int idForum)
+        {
+            var forumCurtida = await _repo.CurtirForum(idForum);
+
+            return new ForumDto(forumCurtida);
+        }
     }
 }

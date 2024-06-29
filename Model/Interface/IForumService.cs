@@ -6,5 +6,6 @@ namespace Model.Interface
     {
         Task<IEnumerable<ForumDto>> ListarForuns();
         Task<bool> AdicionarForum(AdicionarForumDto adicionarForumDto);
+        Task<ForumDto> CurtirForum(int idForum);
     }
 }

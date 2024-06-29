@@ -35,5 +35,18 @@ namespace FinancasPeFWebApi.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("CurtirForum")]
+        public async Task<ActionResult> CurtirForum(int idForum)
+        {
+            try
+            {
+                return Ok(await _service.CurtirForum(idForum));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

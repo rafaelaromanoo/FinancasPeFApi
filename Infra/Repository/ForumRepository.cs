@@ -49,5 +49,22 @@ namespace Infra.Repository
             return inserido > 0;
         }
 
+        public async Task<Forum> CurtirForum(int idForum)
+        {
+            await _connection.OpenAsync();
+
+            var forumCurtida = await _connection.QueryAsync<Forum>(@"
+                                                        UPDATE Forum SET 
+                                                                        CurtidasForum = 
+                                                                                ((SELECT CurtidasForum 
+                                                                                FROM Forum 
+                                                                                WHERE idForum = @idForum) + 1)
+                                                        WHERE idForum = @idForum;
+                                                        SELECT * FROM Forum WHERE IdForum = @idForum", new { idForum });
+
+            await _connection.CloseAsync();
+
+            return forumCurtida.FirstOrDefault()!;
+        }
     }
 }
