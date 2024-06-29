@@ -9,5 +9,7 @@ namespace Model.Interface
     public interface IRespostaForumRepository
     {
         Task<IEnumerable<RespostaForum>> ListarRespostasForum(int idForum);
+        Task<IEnumerable<RespostaForum>> ListarRespostasForum();
+        Task<bool> Inserir(RespostaForum resposta);
     }
 }

@@ -17,5 +17,34 @@ namespace Infra.Repository
 
             return respostas;
         }
+
+        public async Task<IEnumerable<RespostaForum>> ListarRespostasForum()
+        {
+            await _connection.OpenAsync();
+            var respostas = await _connection.QueryAsync<RespostaForum>(@"SELECT * FROM RespostaForum");
+            await _connection.CloseAsync();
+
+            return respostas;
+        }
+
+        public async Task<bool> Inserir(RespostaForum resposta)
+        {
+            await _connection.OpenAsync();
+
+            var inserido = await _connection.ExecuteAsync(
+                @"INSERT INTO RespostaForum (IdRespostaForum, IdForum, UsuarioCadastro, ConteudoResposta) 
+                    VALUES (@IdRespostaForum, @IdForum, @UsuarioCadastro, @ConteudoResposta)",
+                new
+                {
+                    resposta.IdRespostaForum,
+                    resposta.IdForum,
+                    resposta.UsuarioCadastro,
+                    resposta.ConteudoResposta
+                });
+
+            await _connection.CloseAsync();
+
+            return inserido > 0;
+        }
     }
 }

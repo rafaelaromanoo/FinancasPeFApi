@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Model.Dto;
 using Model.Interface;
 
 namespace FinancasPeFWebApi.Controllers
@@ -15,6 +16,19 @@ namespace FinancasPeFWebApi.Controllers
             try
             {
                 return Ok(await _service.ListarRespostasForum(idForum));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AdicionarRespostaForum")]
+        public async Task<IActionResult> AdicionarRespostaForum(AdicionarRespostaForumDto respostaDto)
+        {
+            try
+            {
+                return Ok(await _service.AdicionarRespostaForum(respostaDto));
             }
             catch (Exception ex)
             {
