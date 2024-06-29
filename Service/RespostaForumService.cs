@@ -7,9 +7,9 @@ namespace Service
     {
         private readonly IRespostaForumRepository _repo = repo;
 
-        public async Task<IEnumerable<RespostaForumDto>> ListarRespostasForum()
+        public async Task<IEnumerable<RespostaForumDto>> ListarRespostasForum(int idForum)
         {
-            var respostas = await _repo.ListarRespostasForum();
+            var respostas = await _repo.ListarRespostasForum(idForum);
             var respostasDto = new List<RespostaForumDto>();
 
             foreach (var resposta in respostas)

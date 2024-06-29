@@ -4,6 +4,6 @@ namespace Model.Interface
 {
     public interface IRespostaForumService
     {
-        Task<IEnumerable<RespostaForumDto>> ListarRespostasForum();
+        Task<IEnumerable<RespostaForumDto>> ListarRespostasForum(int idForum);
     }
 }

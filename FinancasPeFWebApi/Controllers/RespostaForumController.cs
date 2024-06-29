@@ -9,12 +9,12 @@ namespace FinancasPeFWebApi.Controllers
     {
         private readonly IRespostaForumService _service = service;
 
-        [HttpGet("ListarRespostaForum")]
-        public async Task<IActionResult> ListarRespostaForum()
+        [HttpGet("ListarRespostaForum/{idForum}")]
+        public async Task<IActionResult> ListarRespostaForum(int idForum)
         {
             try
             {
-                return Ok(await _service.ListarRespostasForum());
+                return Ok(await _service.ListarRespostasForum(idForum));
             }
             catch (Exception ex)
             {

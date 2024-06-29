@@ -8,6 +8,6 @@ namespace Model.Interface
 {
     public interface IRespostaForumRepository
     {
-        Task<IEnumerable<RespostaForum>> ListarRespostasForum();
+        Task<IEnumerable<RespostaForum>> ListarRespostasForum(int idForum);
     }
 }
