@@ -11,7 +11,14 @@ namespace Infra.Repository
         public async Task<IEnumerable<Publicacao>> ListarPublicacoes()
         {
             await _connection.OpenAsync();
-            var publicacoes = await _connection.QueryAsync<Publicacao>("SELECT * FROM Publicacao");
+            var publicacoes = await _connection.QueryAsync<Publicacao>(@"
+                                                                        SELECT 
+	                                                                        IdPublicacao, UsuarioCadastro, DataCadastro,
+	                                                                        p.IdTag, Descricao as DescricaoTag, TituloPublicacao,
+	                                                                        ConteudoPublicacao, CurtidasPublicacao
+                                                                        FROM Publicacao p 
+	                                                                        JOIN Tag t on p.IdTag = t.IdTag
+                                                                        ");
             await _connection.CloseAsync();
 
             return publicacoes;

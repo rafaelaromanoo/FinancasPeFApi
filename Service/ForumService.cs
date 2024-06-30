@@ -25,7 +25,6 @@ namespace Service
         public async Task<bool> AdicionarForum(AdicionarForumDto adicionarForumDto)
         {
             var foruns = await _repo.ListarForuns();
-
             var maxIdForum = foruns.Any() ? foruns.Max(x => x.IdForum) : 0;
 
             var novoForum = new Forum()
@@ -33,7 +32,7 @@ namespace Service
                 IdForum = maxIdForum + 1,
                 UsuarioCadastro = adicionarForumDto.UsuarioCadastroForum,
                 DataCadastro = DateTime.Now,
-                IdTag = 1,
+                IdTag = adicionarForumDto.IdTag,
                 TituloForum = adicionarForumDto.TituloForum,
                 ConteudoForum = adicionarForumDto.ConteudoForum,
                 CurtidasForum = 0

@@ -10,7 +10,15 @@ namespace Infra.Repository
         public async Task<IEnumerable<Forum>> ListarForuns()
         {
             await _connection.OpenAsync();
-            var foruns = await _connection.QueryAsync<Forum>("SELECT * FROM Forum");
+            var foruns = await _connection.QueryAsync<Forum>(@"
+                                                            SELECT
+	                                                            IdForum, UsuarioCadastro, DataCadastro,
+	                                                            f.IdTag, Descricao as DescricaoTag, TituloForum,
+	                                                            ConteudoForum, CurtidasForum, QuantidadeRespostas
+                                                            FROM
+	                                                            Forum f
+	                                                            JOIN Tag t on f.IdTag = t.IdTag
+                                                            ");
             await _connection.CloseAsync();
 
             return foruns;

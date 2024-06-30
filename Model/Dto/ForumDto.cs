@@ -6,6 +6,7 @@
         public string UsuarioCadastro { get; set; } = forum.UsuarioCadastro;
         public string DataCadastro { get; set; } = forum.DataCadastro.ToString();
         public int IdTag { get; set; } = forum.IdTag;
+        public string DescricaoTag { get; set; } = forum.DescricaoTag;
         public string TituloForum { get; set; } = forum.TituloForum;
         public string ConteudoForum { get; set; } = forum.ConteudoForum;
         public int CurtidasForum { get; set; } = forum.CurtidasForum;
