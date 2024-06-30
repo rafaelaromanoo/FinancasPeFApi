@@ -113,8 +113,13 @@ CREATE TABLE UsuarioNewslatter (
     dataCadastro DATETIME,
 );
 
-INSERT INTO Tag (IdTag,Descricao)
-VALUES (1, 'Descricao teste');
+INSERT INTO Tag (IdTag, Descricao) VALUES (1, 'Todos');
+INSERT INTO Tag (IdTag, Descricao) VALUES (2, 'Planejamento financeiro');
+INSERT INTO Tag (IdTag, Descricao) VALUES (3, 'Crianças e adolecentes');
+INSERT INTO Tag (IdTag, Descricao) VALUES (4, 'Investimento');
+INSERT INTO Tag (IdTag, Descricao) VALUES (5, 'Seguros e previdência');
+INSERT INTO Tag (IdTag, Descricao) VALUES (6, 'Crédito e empréstimos');
+INSERT INTO Tag (IdTag, Descricao) VALUES (7, 'Quitação de dívidas');
 
 CREATE TRIGGER trg_AtualizaQuantidadeRespostas
 ON RespostaForum
