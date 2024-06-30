@@ -10,7 +10,7 @@ namespace FinancasPeFWebApi.Controllers
         private readonly IPublicacaoService _service = service;
 
         [HttpGet("ListarPublicacoes")]
-        public async Task<ActionResult> ListarPublicacoes()
+        public async Task<IActionResult> ListarPublicacoes()
         {
             try
             {
@@ -23,7 +23,7 @@ namespace FinancasPeFWebApi.Controllers
         }
 
         [HttpPost("CurtirPublicacao")]
-        public async Task<ActionResult> CurtirPublicacao(int idPublicacao)
+        public async Task<IActionResult> CurtirPublicacao(int idPublicacao)
         {
             try
             {

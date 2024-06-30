@@ -11,7 +11,7 @@ namespace FinancasPeFWebApi.Controllers
         private readonly IForumService _service = service;
 
         [HttpGet("ListarForuns")]
-        public async Task<ActionResult> ListarForuns()
+        public async Task<IActionResult> ListarForuns()
         {
             try
             {
@@ -24,7 +24,7 @@ namespace FinancasPeFWebApi.Controllers
         }
 
         [HttpPost("AdicionarForum")]
-        public async Task<ActionResult> AdicionarForum(AdicionarForumDto adicionarForumDto)
+        public async Task<IActionResult> AdicionarForum(AdicionarForumDto adicionarForumDto)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace FinancasPeFWebApi.Controllers
         }
 
         [HttpPost("CurtirForum")]
-        public async Task<ActionResult> CurtirForum(int idForum)
+        public async Task<IActionResult> CurtirForum(int idForum)
         {
             try
             {
