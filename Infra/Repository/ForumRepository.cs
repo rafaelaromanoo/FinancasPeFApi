@@ -52,6 +52,7 @@ namespace Infra.Repository
                     forum.ConteudoForum,
                     forum.CurtidasForum
                 });
+
             await _connection.CloseAsync();
 
             return inserido > 0;

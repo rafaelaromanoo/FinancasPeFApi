@@ -1,5 +1,6 @@
 ﻿using Model;
 using Model.Dto;
+using Model.Helper;
 using Model.Interface;
 
 namespace Service
@@ -26,6 +27,7 @@ namespace Service
         {
             var foruns = await _repo.ListarForuns();
             var maxIdForum = foruns.Any() ? foruns.Max(x => x.IdForum) : 0;
+            var eTag = (Tag)adicionarForumDto.IdTag;
 
             var novoForum = new Forum()
             {
@@ -33,6 +35,7 @@ namespace Service
                 UsuarioCadastro = adicionarForumDto.UsuarioCadastroForum,
                 DataCadastro = DateTime.Now,
                 IdTag = adicionarForumDto.IdTag,
+                DescricaoTag = eTag.GetDescription(),
                 TituloForum = adicionarForumDto.TituloForum,
                 ConteudoForum = adicionarForumDto.ConteudoForum,
                 CurtidasForum = 0
